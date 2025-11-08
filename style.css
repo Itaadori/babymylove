@@ -1,1 +1,135 @@
-/* Add styles here */
+/* --- General Setup & Stage --- */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to top right, #f8f0fc, #e0f2f7); /* Soft, elegant gradient */
+    font-family: 'Montserrat', sans-serif; /* Professional font */
+    overflow: hidden;
+}
+
+.flower-stage {
+    position: relative;
+    width: 300px; /* Overall size for elegance */
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Soft shadow for depth */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 50%; /* Just for a circular stage feel */
+}
+
+.message {
+    margin-top: 50px;
+    font-size: 1.6em;
+    color: #5d6d7e; /* Muted, elegant text color */
+    opacity: 0;
+    animation: fadeInMessage 2s ease-out 0s forwards; /* Fades in immediately */
+    text-align: center;
+    max-width: 80%;
+}
+
+/* --- Elegant Flower Container --- */
+.elegant-flower {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+/* --- Petal Styling --- */
+.petal {
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    background-color: #f7e6f9; /* Pale lavender-pink */
+    border-radius: 50% 50% 30% 30%; /* Elegant, slightly pointed top */
+    top: 50%;
+    left: 50%;
+    transform-origin: bottom center; /* Pivot from the flower's base */
+    transform: translate(-50%, -50%) rotate(var(--initial-rotation)) scaleX(0.8);
+    opacity: 0.9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle petal shadow */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+
+    /* ANIMATION: The Looping Bloom */
+    animation: bloomLoop 6s ease-in-out infinite alternate forwards;
+}
+
+/* Different layers for depth */
+.petal-layer-1 {
+    z-index: 5;
+    background-color: #FFC50F; /* Lighter outer petals */
+    width: 90px;
+    height: 130px;
+}
+
+.petal-layer-2 {
+    z-index: 10;
+    background-color: #FDE7B3; /* Slightly darker inner petals */
+    width: 70px;
+    height: 110px;
+    transform: translate(-50%, -50%) rotate(var(--initial-rotation)) scaleX(0.7); /* Start slightly smaller */
+}
+
+/* Define initial rotation for each petal for a layered look */
+.layer-1-1 { --initial-rotation: 0deg; }
+.layer-1-2 { --initial-rotation: 90deg; }
+.layer-1-3 { --initial-rotation: 180deg; }
+.layer-1-4 { --initial-rotation: 270deg; }
+
+.layer-2-1 { --initial-rotation: 45deg; }
+.layer-2-2 { --initial-rotation: 135deg; }
+.layer-2-3 { --initial-rotation: 225deg; }
+.layer-2-4 { --initial-rotation: 315deg; }
+
+
+/* --- Flower Core/Center Styling --- */
+.flower-core {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #fcebeb; /* Very pale pink/cream */
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    box-shadow: 0 0 15px rgba(255, 200, 200, 0.4); /* Initial soft glow */
+
+    /* ANIMATION: Pulsating glow */
+    animation: coreGlow 6s ease-in-out infinite alternate forwards;
+}
+
+
+/* --- KEYFRAMES: The Elegant Animations --- */
+
+/* 1. Looping Bloom Animation for Petals */
+@keyframes bloomLoop {
+    0% {
+        transform: translate(-50%, -50%) rotate(var(--initial-rotation)) scaleX(0.7) translateY(0);
+    }
+    50% { /* Fully open state */
+        transform: translate(-50%, -50%) rotate(var(--initial-rotation)) scaleX(1) translateY(-10px);
+        background-color: #e0d7f2; /* Slightly darker when open for contrast */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(var(--initial-rotation)) scaleX(0.7) translateY(0);
+    }
+}
+
+/* 2. Core Pulsating Glow */
+@keyframes coreGlow {
+    0% { box-shadow: 0 0 8px rgba(255, 200, 200, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(255, 200, 200, 0.8), 0 0 40px rgba(255, 200, 200, 0.3); }
+    100% { box-shadow: 0 0 8px rgba(255, 200, 200, 0.4); }
+}
+
+/* 3. Message Fade In */
+@keyframes fadeInMessage {
+    to { opacity: 1; }
+}
